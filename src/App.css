@@ -1,0 +1,12 @@
+body{
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+.logo {
+  will-change: filter;
+  transition: filter 300ms;
+  cursor: pointer;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #3ecf8e);
+}

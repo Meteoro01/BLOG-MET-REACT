@@ -1,6 +1,6 @@
 import React from "react";
 
-const Post = ({ title, user_name, date_creation, description }) => {
+const Post = ({ id_post,title, user_name, date_creation, description }) => {
   const dateObject = new Date(date_creation);
   const year = dateObject.getFullYear();
   const month = dateObject.getMonth() + 1;
@@ -8,7 +8,7 @@ const Post = ({ title, user_name, date_creation, description }) => {
   const formattedDate = `${day}/${month}/${year}`;
 
   return (
-    <div className="flex col-span-2 lg:col-span-1 cursor-pointer flex-col justify-center rounded-xl bg-zinc-800 py-2 shadow transition duration-300 ease-in-out hover:scale-110 hover:shadow-[#3ecf8e]">
+    <div key={id_post} className="flex col-span-2 lg:col-span-1 cursor-pointer flex-col justify-center rounded-xl bg-zinc-800 py-2 shadow transition duration-300 ease-in-out hover:scale-110 hover:shadow-[#3ecf8e]">
       <div className=" z-10 mx-auto -mt-6 rotate-[5deg] rounded-lg border  border-[#3ecf8e] bg-[#3ecf8e07] px-8 py-2 ">
         <h2>Leer</h2>
       </div>

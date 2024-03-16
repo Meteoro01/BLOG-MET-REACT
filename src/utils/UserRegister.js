@@ -1,15 +1,12 @@
 import supabase from "./supabase";
 
 
-async function UserRegister({name, userName, password}) {
-    const { data, error } = await supabase.from("users").insert([
-        {
-            name: name,
-            user_name: userName,
-            password: password
-        }
-    ]).select();
-    return { data, error };
+async function UserRegister({email, password}) {
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
+      return { data, error };
 }
 
 

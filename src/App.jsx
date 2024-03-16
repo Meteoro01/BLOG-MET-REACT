@@ -1,7 +1,6 @@
 import "./App.css";
 // ?IMG-VSG-WEBP
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Loading from "./assets/icons/loading.svg";
 // ?COMPONENTS
 import Header from "./common/Header/Header";
 import Login from "./components/Login";
@@ -15,7 +14,7 @@ import supabase from "./utils/supabase";
 
 function App() {
   const [pnl, setpnl] = useState(true);
-  const [lor, setlor] = useState(false);
+  const [lor, setlor] = useState(true);
   const $body = document.querySelector("body");
 
   const [post, setpost] = useState([]);
@@ -32,8 +31,7 @@ function App() {
 
   useEffect(() => {
     getPost();
-  }, []); 
-
+  }, []);
 
   const togglePanel = () => {
     setpnl(!pnl);
@@ -61,17 +59,21 @@ function App() {
       )}
       <div className="mx-auto grid w-10/12 gap-x-20 gap-y-14 md:grid-cols-2">
         {/* <Categori /> */}
-        {
-          post? post.map((post) => (
+        {post.length > 0 ? (
+          post.map((post) => (
             <Post
-              key={post.id}
+              key={post.id_post}
               title={post.title}
               user_name={post.user_name}
               date_creation={post.date_creation}
               description={post.description}
             />
-          )) : <></>
-        }
+          ))
+        ) : (
+          <div className="flex col-span-2 items-center justify-center">
+            <img src={Loading} className="w-60 mx-auto" alt="" />
+          </div>
+        )}
       </div>
       <Footer />
     </>

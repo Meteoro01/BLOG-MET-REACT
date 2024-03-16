@@ -61,9 +61,7 @@ const Register = ({ toggleLor, togglePanel }) => {
     //   }, 3000);
     // }
   };
-  const handleChange = (e) => {
-    
-  }
+  const handleChange = (e) => {};
 
   const Alert = () => {
     return (
@@ -78,66 +76,52 @@ const Register = ({ toggleLor, togglePanel }) => {
   };
 
   return (
-    <div className="bg-zinc/30 absolute left-1/2 top-1/2 z-20 flex h-[100vh] w-[99vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center backdrop-blur-md">
-      {showAlert ? <Alert /> : null}
-
-      <button
-        className="felx absolute right-4 top-4 items-center justify-center duration-200 ease-in md:right-10 md:top-10"
-        onClick={togglePanel}
-      >
-        <img src={X} className="w-10 md:w-14 " alt="" />
-      </button>
-      <div className="flex w-[400px] flex-col gap-y-2 rounded-lg border-2 border-[#3ecf8e] shadow-xl shadow-black bg-zinc-800  py-6">
-        <h2 className="mx-auto flex gap-x-2 py-10 text-4xl font-bold text-[#3ecf8e]">
-          BLOGMET
-          <img src={Logo} className="w-10" alt="" />
-        </h2>
-        <div className="mx-auto flex flex-col py-2">
+    <div className="flex flex-col rounded-3xl bg-zinc-800 py-10">
+      <h2 className="mx-auto flex gap-x-2 py-10 text-4xl font-bold text-[#3ecf8e]">
+        Register
+      </h2>
+      <div className="mx-auto flex flex-col py-2">
+        <input
+          type="email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          className="h-[50px] w-[300px] rounded-lg   bg-zinc-700 pl-3 focus:outline-none"
+        />
+      </div>
+      <div className="relative mx-auto flex flex-col py-2">
+        <div className="relative">
           <input
-            type="email"
-            value={email}
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            className="h-[50px] w-[300px] rounded-lg   bg-zinc-700 pl-3 focus:outline-none"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            id="password1"
+            className="h-[50px] w-[300px] rounded-lg  bg-zinc-700 pl-3 pr-[40px] focus:outline-none"
           />
-        </div>
-        <div className="relative mx-auto flex flex-col py-2">
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              id="password1"
-              className="h-[50px] w-[300px] rounded-lg  bg-zinc-700 pl-3 pr-[40px] focus:outline-none"
-            />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute right-0 top-0 mr-[10px] mt-[10px]"
-            >
-              {showPassword ? view(viewTrue) : view(viewFalse)}
-            </button>
-          </div>
-        </div>
-        <div className="mx-auto flex flex-col py-4">
           <button
             type="button"
-            className="h-[50px] w-[300px] rounded-lg border-2 border-[#3ecf8e] bg-[#3ecf8e] text-zinc-800"
-            onClick={verify}
+            onClick={togglePasswordVisibility}
+            className="absolute right-0 top-0 mr-[10px] mt-[10px]"
           >
-            Register
+            {showPassword ? view(viewTrue) : view(viewFalse)}
           </button>
         </div>
-        <div className="flex w-full justify-center gap-x-2 px-8">
-          <p className="">Do you already have an account?</p>
-          <button
-            className="text-[#3ecf8e] hover:underline"
-            onClick={toggleLor}
-          >
-            Login
-          </button>
-        </div>
+      </div>
+      <div className="mx-auto flex flex-col py-4">
+        <button
+          type="button"
+          className="h-[50px] w-[300px] rounded-lg border-2 border-[#3ecf8e] bg-[#3ecf8e] text-zinc-800"
+          onClick={verify}
+        >
+          Register
+        </button>
+      </div>
+      <div className="flex w-full justify-center gap-x-2 px-8">
+        <p className="">Do you already have an account?</p>
+        <button className="text-[#3ecf8e] hover:underline" onClick={toggleLor}>
+          Login
+        </button>
       </div>
     </div>
   );

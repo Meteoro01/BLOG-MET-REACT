@@ -11,13 +11,13 @@ import Post from "./components/Post";
 import Footer from "./common/Footer/Footer";
 import Categori from "./components/Categori";
 import supabase from "./utils/supabase";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Access from "./pages/Access";
+import Home from "./pages/Home";
 
 function App() {
-  const [pnl, setpnl] = useState(true);
-  const [lor, setlor] = useState(true);
   const $body = document.querySelector("body");
 
-  const [post, setpost] = useState([]);
 
   async function getPost() {
     let { data: post, error } = await supabase.from("post").select("*");
@@ -33,50 +33,21 @@ function App() {
     getPost();
   }, []);
 
-  const togglePanel = () => {
-    setpnl(!pnl);
-    // setlor(true);
-    if (pnl) {
-      $body.style.overflow = "hidden";
-    } else {
-      $body.style.overflow = "auto";
-    }
-  };
 
-  const toggleLor = () => {
-    setlor(!lor);
-  };
 
   return (
-    <>
-      <Header togglePanel={togglePanel} />
-      {pnl ? (
-        <></>
-      ) : lor ? (
-        <Login toggleLor={toggleLor} togglePanel={togglePanel} />
-      ) : (
-        <Register toggleLor={toggleLor} togglePanel={togglePanel} />
-      )}
-      <div className="mx-auto grid w-10/12 gap-x-20 gap-y-14 md:grid-cols-2">
-        {/* <Categori /> */}
-        {post.length > 0 ? (
-          post.map((post) => (
-            <Post
-              key={post.id_post}
-              title={post.title}
-              user_name={post.user_name}
-              date_creation={post.date_creation}
-              description={post.description}
-            />
-          ))
-        ) : (
-          <div className="flex col-span-2 items-center justify-center">
-            <img src={Loading} className="w-60 mx-auto" alt="" />
-          </div>
-        )}
-      </div>
-      <Footer />
-    </>
+    <div className="App">
+      <BrowserRouter>
+        {/* <Header  /> */}
+        <Routes>
+          <Route path="/" element={<Access />} />
+          <Route path="/home" element={<Home/>} />
+        </Routes>
+        
+
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

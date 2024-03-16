@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import viewTrue from "../assets/icons/viewtrue.svg";
 import viewFalse from "../assets/icons/viewfalse.svg";
-import Logo from "../assets/icons/logogreend.svg";
-import X from "../assets/icons/x.svg";
-import UserAccess from "../utils/userAccess";
+import UserAccess from "../utils/UserAccess";
 
 const Login = ({ toggleLor, togglePanel }) => {
   const [showPassword, setShowPassword] = useState(false);
